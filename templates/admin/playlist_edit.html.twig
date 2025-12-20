@@ -1,0 +1,41 @@
+{% extends "baseadmin.html.twig" %}
+
+{% block body %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-left align-top" scope="col">
+                Modifier une playlist 
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                (* champ obligatoire)<br />
+                {{ form_start(form) }}
+                <h5 class="text-info">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.description) }}
+                </h5>
+                {% if playlist.formations|length > 0 %}
+                    <label class="text-info h5">Formations :</label>
+                    <select class="form-control" multiple disabled>
+                        {% for formation in playlist.formations %}
+                            <option>{{ formation.title }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <p>Aucune formation dans cette playlist</p>
+                {% endif %}
+                <br />
+                <button type="submit" class="btn btn-info mb-2 btn-sm">
+                    modifier
+                </button>
+                {{ form_end(form) }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

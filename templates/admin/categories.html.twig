@@ -1,0 +1,67 @@
+{% extends "baseadmin.html.twig" %}
+{% block body %}
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Catégorie</th>
+                    <th class="text-center">Nb formations</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if categories|length > 0 %}
+                    {% for categorie in categories %}
+                        <tr class="align-middle">
+                            <td>
+                                <span class="fw-bold text-info">
+                                    {{ categorie.name }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                {{ categorie.formations|length }}
+                            </td>
+                            <td class="text-center">
+                                {% if categorie.formations|length >= 0 %}
+                                    <form method="POST"
+                                          action="{{ path('admin.categories.remove', {id: categorie.id}) }}"
+                                          onsubmit="return confirm('Voulez-vous vraiment supprimer cette catégorie ?');">
+                                        <button class="btn btn-info btn-sm active" role="button" aria-pressed="true"
+                                                class="btn btn-danger btn-sm">
+                                            supprimer
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            Aucune catégorie
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                Ajouter une catégorie
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}<br />
+                <button type="submit" class="btn btn-info mb-2 btn-sm">
+                    ajouter
+                </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+            
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "baseadmin.html.twig" %}
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left align-top" scope="col">
+                    Ajouter une playlist 
+                </th>
+            </tr>
+        </thead>
+            <tr class="align-right">
+                (* champ obligatoire)<br />
+                <td> 
+                    {{ form_start(form) }}
+                    <h5 class="text-info">
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.description) }} 
+                    </h5>
+                    <button type="submit" class="btn btn-info mb-2 btn-sm">ajouter</button>
+                    {{ form_end(form) }}
+                </td>
+            </tr>
+    </table>
+{% endblock %}

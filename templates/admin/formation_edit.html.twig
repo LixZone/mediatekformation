@@ -1,0 +1,28 @@
+{% extends "baseadmin.html.twig" %}
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left align-top" scope="col">
+                    Modifier une formation 
+                </th>
+            </tr>
+        </thead>
+            <tr class="align-right">
+                (* champ obligatoire)<br />
+                <td> 
+                    {{ form_start(form) }}
+                    <h5 class="text-info">
+                        {{ form_row(form.title) }}
+                        {{ form_row(form.description) }}
+                        {{ form_row(form.videoId) }}
+                        {{ form_row(form.playlist) }} 
+                        {{ form_row(form.categories) }}
+                        {{ form_row(form.publishedAt) }} 
+                    </h5>
+                    <button type="submit" class="btn btn-info mb-2 btn-sm">modifier</button>
+                    {{ form_end(form) }}
+                </td>
+            </tr>
+    </table>
+{% endblock %}
